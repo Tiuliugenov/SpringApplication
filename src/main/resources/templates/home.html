@@ -28,7 +28,7 @@
             background-color: lightgreen;
         }
         .name{
-        color: blue;
+            color: blue;
             font-size: 18px;
         }.price{ color: chartreuse; font-size: 17px;}
     </style>
@@ -36,18 +36,23 @@
 <body>
 <a href="second"> ==>Second Page</a>
 <h1 style="text-align:center">Electronic shop items</h1>
+    <a href="/additem">
+        <button class="my-btn">Add new Item</button>
 <div class="row justify-content-center">
     <div th:each="item : ${items}" class="col-sm-4">
         <div class="info-item">
 
-    <p class="name" th:text="${item.getFullName()}"></p>
-    <p  th:text="${item.getDescription()}"></p>
-    <p class="price" th:text="${item.getPrice()}"></p>
-            <a href="#">
+            <p class="name" th:text="${item.getFullName()}"></p>
+            <p  th:text="${item.getDescription()}"></p>
+            <p class="price" th:text="${item.getPrice()}"></p>
+            <a th:href="@{/details/{id}(id=${item.id})}">
                 <button class="my-btn">Details</button>
             </a>
+
         </div>
     </div>
 </div>
+
+</a>
 </body>
 </html>
