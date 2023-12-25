@@ -1,58 +1,33 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        .info-item {
-            background-color: aliceblue;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .my-btn {
-            background-color: green;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+<div layout:fragment="content">
+    <button type="button" class="btn btn-primary" data data-bs-toggle="modal" data-bs-target="#addItem">
+        Add Item +
+    </button>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+                <td th:text="${item.getId()}"></td>
+                <td th:text="${item.getName()}"></td>
+                <td th:text="${item.getPrice()}"></td>
+                <td th:text="${item.getDescription()}"></td>
+                <td>
+                    <a th:href="@{/details/{id}(id=${item.id})}" class="btn btn-dark">Details</a>
+                </td>
+            </tr>
 
-        .my-btn:hover {
-            background-color: darkgreen;
-        }
-        .my-btn:active {
-            background-color: lightgreen;
-        }
-        .name{
-            color: blue;
-            font-size: 18px;
-        }.price{ color: chartreuse; font-size: 17px;}
-    </style>
-</head>
-<body>
-<a href="second"> ==>Second Page</a>
-<h1 style="text-align:center">Electronic shop items</h1>
-    <a href="/additem">
-        <button class="my-btn">Add new Item</button>
-<div class="row justify-content-center">
-    <div th:each="item : ${items}" class="col-sm-4">
-        <div class="info-item">
-
-            <p class="name" th:text="${item.getFullName()}"></p>
-            <p  th:text="${item.getDescription()}"></p>
-            <p class="price" th:text="${item.getPrice()}"></p>
-            <a th:href="@{/details/{id}(id=${item.id})}">
-                <button class="my-btn">Details</button>
-            </a>
-
-        </div>
-    </div>
+        </table>
 </div>
-
-</a>
-</body>
-</html>
+</div>
+   </html>
